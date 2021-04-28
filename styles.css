@@ -1,0 +1,282 @@
+body{
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	margin: 0;
+}
+
+body *, *:focus{
+	user-select: none;
+}
+
+.arrow{
+	background-color: #303030;
+	width: 40px;
+	border-radius: 30px;
+	height: 3px;
+	position: relative;
+}
+
+.arrow:before{
+	position: absolute;
+	content: "";
+	background-color: inherit;
+	width: 12px;
+	border-radius: 30px;
+	height: inherit;
+	transform: rotate(40deg);
+	display: inline-block;
+	right: -3px;
+	top: -3px;
+}
+
+.arrow:after{
+	position: absolute;
+	content: "";
+	background-color: inherit;
+	width: 12px;
+	border-radius: 30px;
+	height: inherit;
+	transform: rotate(140deg);
+	display: inline-block;
+	right: -3px;
+	top: 3px;
+}
+
+.prev-button,
+.next-button{
+	display: flex;
+	flex-wrap: nowrap;
+}
+
+.prev-button *,
+.next-button *{
+	align-self: center;
+	padding: 0px 8px;
+	margin: 5px;
+	transition: 0.6s;
+}
+
+.prev-button .arrow{
+	transform: scale(-1);
+}
+
+.prev-button:hover .arrow:before,
+.prev-button:hover .arrow:after{
+	width: 0px;
+	transition: 0.2s;
+}
+
+.prev-button:hover .arrow{
+	width: 0px;
+	transition: 0.4s;
+	margin: 0;
+	padding: 0;
+}
+
+.prev-button .hoverArrow:before,
+.prev-button .hoverArrow:after{
+	width: 0px;
+	transition: 0.2s;
+}
+
+.prev-button .hoverArrow{
+	width: 0px;
+	transition: 0.4s;
+	margin: 0px;
+	padding: 0px;
+}
+
+.prev-button:hover .hoverArrow:before,
+.prev-button:hover .hoverArrow:after{
+	width: 12px;
+	transition: 0.2s;
+}
+
+.prev-button:hover .hoverArrow{
+	width: 40px;
+	transition: 0.4s;
+	margin: 5px;
+	padding: 0 8px;
+}
+
+.next-button:hover .arrow:before,
+.next-button:hover .arrow:after{
+	width: 0px;
+	transition: 0.2s;
+}
+
+.next-button:hover .arrow{
+	width: 0px;
+	transition: 0.4s;
+	margin: 0;
+	padding: 0;
+}
+
+.next-button .hoverArrow:before,
+.next-button .hoverArrow:after{
+	width: 0px;
+	transition: 0.2s;
+}
+
+.next-button .hoverArrow{
+	width: 0px;
+	transition: 0.4s;
+	margin: 0px;
+	padding: 0px;
+}
+
+.next-button:hover .hoverArrow:before,
+.next-button:hover .hoverArrow:after{
+	width: 12px;
+	transition: 0.2s;
+}
+
+.next-button:hover .hoverArrow{
+	width: 40px;
+	transition: 0.4s;
+	margin: 5px;
+	padding: 0 8px;
+}
+
+.sliderContainer{
+	display: flex;
+	position: absolute;
+	height: 100%;
+    width: 100%;
+    top: 0;
+    left: 0;
+    margin: 0 auto;
+}
+
+.controls{
+	position: absolute;
+	margin: 0 auto;
+	display: flex;
+	align-self: center;
+	left: 50%;
+	top: 90%;
+	transform: translate(-50%, -50%);
+	font-size: 32px;
+	letter-spacing: 5px;
+	font-weight: bold;
+	z-index: 99999;
+	text-transform: uppercase;
+}
+
+.controls > div{
+	align-self: center;
+	max-width: 250px;
+	width: 100%;
+	height: auto;
+	text-align: center;
+	padding: 1px 24px 5px 23px;
+	cursor: pointer;
+	margin: 0px 15px;
+	background-color: transparent;
+	color: #202020;
+	transition: 0.3s;
+	font-family: sans-serif;
+	font-weight: 800;
+}
+
+.slider{
+	text-align: center;
+	margin: 0 auto;
+	align-self: center;
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
+.slider *{
+	transition: 0.6s;
+}
+
+.active-slide.slide img{
+	max-height: 700px;
+}
+
+.slide img{
+	max-height: 550px;
+}
+
+.slide{
+	pointer-events: none;
+	border-radius: 20px;
+	position: absolute;
+	top: 45%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 0;
+	opacity: 0;
+	cursor: grab;
+	transition: 0.2s cubic-bezier(0,.64,1,.94);
+	overflow: hidden;
+}
+
+.grabbing *,
+.grabbing .active-slide{
+	cursor: grabbing !important;
+	transition: none !important;
+}
+
+.prev-slide.slide, .next-slide.slide, .active-slide.slide{
+	pointer-events: all;
+}
+
+.prev-slide, .next-slide{
+	filter: blur(0.5px);
+}
+
+.prev-slide:hover, .next-slide:hover{
+	filter: blur(0px);
+}
+
+.prev-slide{
+	opacity: 0.3;
+	left: 35%;
+}
+
+.prev-slide:hover{
+	transform: rotate(-16deg) translateX(-170px) translateY(-260px);
+	opacity: 0.8;
+	transition: 0.3s cubic-bezier(0,-0.24,.17,-0.19);
+}
+
+.next-slide:hover{
+	transform: rotate(16deg) translateX(-120px) translateY(-190px);
+	opacity: 0.8;
+	transition: 0.3s cubic-bezier(0,-0.24,.17,-0.19);
+}
+
+.next-slide{
+	opacity: 0.4;
+	left: 65%;
+}
+
+.active-slide{
+	box-shadow: 1px 2px 25px rgba(0,0,0,0.2);
+	z-index: 99;
+	left: 50%;
+	opacity: 1;
+	transition: 0.4s cubic-bezier(0,.64,1,.94);
+}
+
+@media screen and (max-width: 1366px){
+
+	.active-slide.slide img{
+		max-height: 500px;
+	}
+
+	.slide img{
+		max-height: 400px;
+	}
+
+	.controls{
+		top: 93%;
+		font-size: 18px;
+	}
+
+}
