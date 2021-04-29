@@ -1,3 +1,9 @@
+function startup(){
+	slider('.slider');
+}
+
+document.addEventListener("DOMContentLoaded", startup);
+
 function slider(element){
 
 	if (element){
@@ -16,7 +22,7 @@ function slider(element){
 		  }
 		});
 
-	//click events for prev and next
+		//click events for prev and next
 		document.querySelectorAll('.next-button')[0].addEventListener('click', next_slide );
 		document.querySelectorAll('.prev-button')[0].addEventListener('click', prev_slide );
 
@@ -38,7 +44,7 @@ function slider(element){
 
 }
 
-//touch handler
+//touch handler - source: https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
 document.addEventListener('touchstart', handleTouchStart, false);        
 document.addEventListener('touchmove', handleTouchMove, false);
 
@@ -84,28 +90,6 @@ function handleTouchMove(evt) {
     xDown = null;
     yDown = null;                                             
 };
-
-function make_images_draggable(e){
-
-	//not yet finish....
-
-	let images = e.getElementsByTagName('img')[0];
-
-	images.setAttribute('draggable', true);
-
-	let bool = images.hasAttribute('draggable');
-
-		if (bool){
-
-			console.log('images are draggable');
-
-		}
-
-		else{
-			error('not draggable');
-		}//enforces images to be draggable...tbc
-
-}
 
 function add_classes_to_children(parentElement){
 
@@ -323,7 +307,3 @@ function dragging_func(element){
 
 	}
 }
-
-slider('.slider');
-
-console.log('----------------'); //divider for console logs
