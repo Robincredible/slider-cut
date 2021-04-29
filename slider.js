@@ -111,8 +111,6 @@ function add_classes_to_children(parentElement){
 		childElement = parent.children[i].className += 'slide-' + i + ' ';
 		childElement = parent.children[i].className += 'slide ';
 
-		make_images_draggable(parent);
-
 	}
 
 }
