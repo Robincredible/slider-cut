@@ -291,7 +291,7 @@ body *, *:focus{
 
 }
 
-@media screen and (max-width: 800px){
+/*@media screen and (max-width: 800px){
 
 	.active-slide.slide{
 		max-height: 600px;
@@ -302,7 +302,7 @@ body *, *:focus{
 	}
 
 }
-
+*/
 @media screen and (max-width: 600px){
 
 	.prev-button p, .next-button p{
@@ -318,7 +318,7 @@ body *, *:focus{
 	}
 
 	.slide{
-		max-height: 300px;
+		max-height: 345px;
 	}
 
 }
@@ -330,7 +330,7 @@ body *, *:focus{
 	}
 
 	.slide{
-		max-height: 250px;
+		max-height: 345px;
 	}
 
 }

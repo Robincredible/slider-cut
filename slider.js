@@ -17,12 +17,73 @@ function slider(element){
 		});
 
 	//click events for prev and next
-	document.getElementsByClassName('next-button')[0].addEventListener('click', next_slide );
-	document.getElementsByClassName('prev-button')[0].addEventListener('click', prev_slide );
+		document.querySelectorAll('.next-button')[0].addEventListener('click', next_slide );
+		document.querySelectorAll('.prev-button')[0].addEventListener('click', prev_slide );
 
 	}
 
+	document.querySelectorAll('.slider')[0].addEventListener('click', function(e){
+
+		x = e.target;
+
+		if (x.parentElement.classList.contains("next-slide") ){
+			next_slide();
+		}
+
+		if (x.parentElement.classList.contains("prev-slide") ){
+			prev_slide();
+		}
+
+	});
+
 }
+
+//touch handler
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+
+var xDown = null;                                                        
+var yDown = null;
+
+function getTouches(evt) {
+  return evt.touches ||             // browser API
+         evt.originalEvent.touches; // jQuery
+}                                                     
+
+function handleTouchStart(evt) {
+    const firstTouch = getTouches(evt)[0];                                      
+    xDown = firstTouch.clientX;                                      
+    yDown = firstTouch.clientY;                                      
+};                                                
+
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+
+    var xUp = evt.touches[0].clientX;                                    
+    var yUp = evt.touches[0].clientY;
+
+    var xDiff = xDown - xUp;
+    var yDiff = yDown - yUp;
+
+    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+        if ( xDiff > 0 ) {
+           next_slide();
+        } else {
+            prev_slide();
+        }                       
+    } else {
+        if ( yDiff > 0 ) {
+            /* up swipe */ 
+        } else { 
+            /* down swipe */
+        }                                                                 
+    }
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};
 
 function make_images_draggable(e){
 
@@ -48,8 +109,7 @@ function make_images_draggable(e){
 
 function add_classes_to_children(parentElement){
 
-	let num = 0;
-	let parent = document.getElementsByClassName(parentElement)[num];
+	let parent = document.querySelectorAll(parentElement)[0];
 
 	for (let i = 0; i < parent.children.length; i++){
 
@@ -75,7 +135,7 @@ function add_classes_to_children(parentElement){
 
 function style_active_previous_and_next_slides(){
 
-	let active = document.getElementsByClassName('active-slide')[0];
+	let active = document.querySelectorAll('.active-slide')[0];
 	
 	let prev = active.previousElementSibling;
 	let next = active.nextElementSibling;
@@ -87,7 +147,8 @@ function style_active_previous_and_next_slides(){
 
 function next_slide(){
 
-	let active = document.getElementsByClassName('active-slide')[0];
+	console.log('next');
+	let active = document.querySelectorAll('.active-slide')[0];
 
 	if (active.nextElementSibling){
 
@@ -115,7 +176,9 @@ function next_slide(){
 
 function prev_slide(){
 
-	let active = document.getElementsByClassName('active-slide')[0];
+	console.log('prev');
+
+	let active = document.querySelectorAll('.active-slide')[0];
 
 	if (active.previousElementSibling){
 
@@ -144,13 +207,13 @@ function prev_slide(){
 
 function dragging_func(element){
 
-	let parentElement = document.getElementsByClassName(element)[0];
+	let parentElement = document.querySelectorAll(element)[0];
 	let images;
 	let i;
 
 	for (i = 0; i < parentElement.childElementCount; i++){
 
-		let slideParents = parentElement.getElementsByClassName('slide')[i];
+		let slideParents = parentElement.querySelectorAll('.slide')[i];
 		let slide = slideParents;
 
 		if (slide){
@@ -261,6 +324,6 @@ function dragging_func(element){
 	}
 }
 
-slider('slider');
+slider('.slider');
 
 console.log('----------------'); //divider for console logs
