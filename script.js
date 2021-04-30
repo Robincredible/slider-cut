@@ -8,7 +8,7 @@ function addListenerMulti(element, eventNames, listener) {
 
 }
 
-addListenerMulti(window, 'click keydown', lazyLoad);
+addListenerMulti(window, 'click keydown touchstart touchmove', lazyLoad);
 
 // Run after the HTML document has finished loading
 function lazyLoad(){
