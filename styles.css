@@ -6,8 +6,10 @@ body{
 	margin: 0;
 }
 
-body *, *:focus{
+body *, 
+*:focus{
 	user-select: none;
+	-webkit-tap-highlight-color:  rgba(255, 255, 255, 0); 
 }
 
 .sliderContainer{
@@ -191,7 +193,7 @@ body *, *:focus{
 }
 
 .slider *{
-	transition: 0.6s;
+	transition: 0.3s;
 }
 
 .active-slide.slide{
@@ -233,25 +235,19 @@ body *, *:focus{
 	transition: none !important;
 }
 
-/*.grabbing *{
-	opacity: 0;
-	pointer-events: none;
-}*/
-
-/*.grabbing .slide, .grabbing .slide img{
-	z-index: 100;
-	opacity: 1;
-}*/
-
-.prev-slide.slide, .next-slide.slide, .active-slide.slide{
+.prev-slide.slide, 
+.next-slide.slide, 
+.active-slide.slide{
 	pointer-events: all;
 }
 
-.prev-slide, .next-slide{
+.prev-slide, 
+.next-slide{
 	filter: blur(0.5px);
 }
 
-.prev-slide:hover, .next-slide:hover{
+.prev-slide:hover, 
+.next-slide:hover{
 	filter: blur(0px);
 }
 
@@ -301,18 +297,6 @@ body *, *:focus{
 
 }
 
-/*@media screen and (max-width: 800px){
-
-	.active-slide.slide{
-		max-height: 600px;
-	}
-
-	.slide{
-		max-height: 400px;
-	}
-
-}
-*/
 @media screen and (max-width: 600px){
 
 	.prev-button p, .next-button p{

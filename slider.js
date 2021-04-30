@@ -1,14 +1,8 @@
 function startup(){
-
 	slider('.slider');
-
 }
 
 document.addEventListener("DOMContentLoaded", startup);
-
-function infinite_slider(){
-	// to be added
-}
 
 function slider(element){
 
@@ -46,63 +40,6 @@ function slider(element){
 		});
 
 	}
-
-}
-
-/* 
- * Touch handler - For mobile devices
- * source: https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
- */
-
-function touching_func(element){
-
-	let parentElement = document.querySelectorAll(element)[0];
-
-	parentElement.addEventListener('touchstart', handleTouchStart, false);        
-	parentElement.addEventListener('touchmove', handleTouchMove, false);
-
-	var xDown = null;                                                        
-	var yDown = null;
-
-	function getTouches(evt) {
-	  return evt.touches ||             // browser API
-	         evt.originalEvent.touches; // jQuery
-	}                                                     
-
-	function handleTouchStart(evt) {
-	    const firstTouch = getTouches(evt)[0];                                      
-	    xDown = firstTouch.clientX;                                      
-	    yDown = firstTouch.clientY;                                      
-	};                                                
-
-	function handleTouchMove(evt) {
-	    if ( ! xDown || ! yDown ) {
-	        return;
-	    }
-
-	    var xUp = evt.touches[0].clientX;                                    
-	    var yUp = evt.touches[0].clientY;
-
-	    var xDiff = xDown - xUp;
-	    var yDiff = yDown - yUp;
-
-	    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
-	        if ( xDiff > 0 ) {
-	           next_slide();
-	        } else {
-	            prev_slide();
-	        }                       
-	    } else {
-	        if ( yDiff > 0 ) {
-	            /* up swipe */ 
-	        } else { 
-	            /* down swipe */
-	        }                                                                 
-	    }
-	    /* reset values */
-	    xDown = null;
-	    yDown = null;                                             
-	};
 
 }
 
@@ -149,7 +86,6 @@ function style_active_previous_and_next_slides(){
 
 function next_slide(){
 
-	console.log('next');
 	let active = document.querySelectorAll('.active-slide')[0];
 
 	if (active.nextElementSibling){
@@ -177,8 +113,6 @@ function next_slide(){
 }
 
 function prev_slide(){
-
-	console.log('prev');
 
 	let active = document.querySelectorAll('.active-slide')[0];
 
@@ -210,8 +144,7 @@ function prev_slide(){
 function dragging_func(element){
 
 	let parentElement = document.querySelectorAll(element)[0];
-	let images;
-	let i;
+	let images, i;
 
 	for (i = 0; i < parentElement.childElementCount; i++){
 
@@ -251,16 +184,10 @@ function dragging_func(element){
 					//slide.style.removeProperty('transition');
 				}
 
-				function logMousePlace(event) {
-					console.log('X is ' + event.pageX);
-				}
-
 				document.addEventListener('mousemove', onMouseMove);
-				document.addEventListener('mousedown', logMousePlace);
 
 				slide.onmouseup = function() {
 					document.removeEventListener('mousemove', onMouseMove);
-					document.removeEventListener('mousedown', logMousePlace);
 
 					grabbedElement.classList.remove('grabbed-element');
 
@@ -278,7 +205,6 @@ function dragging_func(element){
 
 				slide.onmouseleave = function() {
 					document.removeEventListener('mousemove', onMouseMove);
-					document.removeEventListener('mousedown', logMousePlace);
 
 					grabbedElement.classList.remove('grabbed-element');
 
@@ -296,7 +222,6 @@ function dragging_func(element){
 
 				document.body.onmouseup = function(){
 					document.removeEventListener('mousemove', onMouseMove);
-					document.removeEventListener('mousedown', logMousePlace);
 
 					grabbedElement.classList.remove('grabbed-element');
 
@@ -312,7 +237,6 @@ function dragging_func(element){
 
 				document.body.onmouseleave = function(){
 					document.removeEventListener('mousemove', onMouseMove);
-					document.removeEventListener('mousedown', logMousePlace);
 
 					grabbedElement.classList.remove('grabbed-element');
 
@@ -336,4 +260,64 @@ function dragging_func(element){
 		}
 
 	}
+}
+
+/* 
+ * Touch handler - For mobile devices
+ * source: https://stackoverflow.com/questions/2264072/detect-a-finger-swipe-through-javascript-on-the-iphone-and-android
+ */
+
+function touching_func(element){
+
+	let parentElement = document.querySelectorAll(element)[0];
+
+	parentElement.addEventListener('touchstart', handleTouchStart, false);        
+	parentElement.addEventListener('touchmove', handleTouchMove, false);
+
+	var xDown = null;                                                        
+	var yDown = null;
+
+	function getTouches(evt) {
+	  return evt.touches ||             // browser API
+	         evt.originalEvent.touches; // jQuery
+	}                                                     
+
+	function handleTouchStart(evt) {
+	    const firstTouch = getTouches(evt)[0];                                      
+	    xDown = firstTouch.clientX;                                      
+	    yDown = firstTouch.clientY;                                      
+	};                                                
+
+	function handleTouchMove(evt) {
+	    if ( ! xDown || ! yDown ) {
+	        return;
+	    }
+
+	    var xUp = evt.touches[0].clientX;                                    
+	    var yUp = evt.touches[0].clientY;
+
+	    var xDiff = xDown - xUp;
+	    var yDiff = yDown - yUp;
+
+	    if ( Math.abs( xDiff ) > Math.abs( yDiff ) ) {/*most significant*/
+	        if ( xDiff > 0 ) {
+	        	/* left swipe */
+	           next_slide();
+	        } else {
+	        	/* right swipe */
+	            prev_slide();
+	        }                       
+	    } else {
+	        if ( yDiff > 0 ) {
+	            /* up swipe */ 
+	        } else { 
+	            /* down swipe */
+	            location.reload();
+	        }                                                                 
+	    }
+	    /* reset values */
+	    xDown = null;
+	    yDown = null;                                             
+	};
+
 }
