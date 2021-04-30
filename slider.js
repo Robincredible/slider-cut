@@ -37,7 +37,7 @@ function slider(element){
 				prev_slide();
 			}
 
-		});
+		}, {passive: true} );
 
 	}
 
@@ -184,7 +184,7 @@ function dragging_func(element){
 					//slide.style.removeProperty('transition');
 				}
 
-				document.addEventListener('mousemove', onMouseMove);
+				document.addEventListener('mousemove', onMouseMove, {passive: true});
 
 				slide.onmouseup = function() {
 					document.removeEventListener('mousemove', onMouseMove);
@@ -271,8 +271,8 @@ function touching_func(element){
 
 	let parentElement = document.querySelectorAll(element)[0];
 
-	parentElement.addEventListener('touchstart', handleTouchStart, false);        
-	parentElement.addEventListener('touchmove', handleTouchMove, false);
+	parentElement.addEventListener('touchstart', handleTouchStart, {passive: true});        
+	parentElement.addEventListener('touchmove', handleTouchMove, {passive: true});
 
 	var xDown = null;                                                        
 	var yDown = null;
