@@ -56,10 +56,10 @@ function slider(element){
 
 function touching_func(element){
 
-	let parent = element;
+	let parentElement = document.querySelectorAll(element)[0];
 
-	parent.addEventListener('touchstart', handleTouchStart, false);        
-	parent.addEventListener('touchmove', handleTouchMove, false);
+	parentElement.addEventListener('touchstart', handleTouchStart, false);        
+	parentElement.addEventListener('touchmove', handleTouchMove, false);
 
 	var xDown = null;                                                        
 	var yDown = null;
