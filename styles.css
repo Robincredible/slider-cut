@@ -283,7 +283,7 @@ body *,
 	z-index: 99;
 	left: 50%;
 	opacity: 1;
-	transition: 0.4s cubic-bezier(0,.64,1,.94);
+	transition: 0.2s cubic-bezier(0,.64,1,.94);
 }
 
 @media screen and (max-width: 1366px){
