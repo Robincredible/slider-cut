@@ -7,6 +7,10 @@ body{
 	margin: 0;
 }
 
+.lazy{
+	display: none;
+}
+
 body *, 
 *:focus{
 	user-select: none;
