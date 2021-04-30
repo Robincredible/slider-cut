@@ -233,6 +233,16 @@ body *, *:focus{
 	transition: none !important;
 }
 
+/*.grabbing *{
+	opacity: 0;
+	pointer-events: none;
+}*/
+
+/*.grabbing .slide, .grabbing .slide img{
+	z-index: 100;
+	opacity: 1;
+}*/
+
 .prev-slide.slide, .next-slide.slide, .active-slide.slide{
 	pointer-events: all;
 }
@@ -246,24 +256,24 @@ body *, *:focus{
 }
 
 .prev-slide{
-	opacity: 0.3;
+	opacity: 0.6;
 	left: 35%;
 }
 
 .prev-slide:hover{
 	transform: rotate(-16deg) translateX(-60%) translateY(-60%);
-	opacity: 0.8;
+	opacity: 1;
 	transition: 0.3s cubic-bezier(0,-0.24,.17,-0.19);
 }
 
 .next-slide:hover{
 	transform: rotate(16deg) translateX(-37%) translateY(-40%);
-	opacity: 0.8;
+	opacity: 1;
 	transition: 0.3s cubic-bezier(0,-0.24,.17,-0.19);
 }
 
 .next-slide{
-	opacity: 0.4;
+	opacity: 0.6;
 	left: 65%;
 }
 
